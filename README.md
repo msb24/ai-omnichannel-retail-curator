@@ -1,4 +1,4 @@
-[AI Omnichannel Retail Curator case study template.md](https://github.com/user-attachments/files/34399668/AI.Omnichannel.Retail.Curator.case.study.template.md)[Uploadi# AI Omnichannel Retail Curator
+[AI Omnichannel Retail Curator case study template.md](https://github.com/user-attachments/files/34399668/AI.Omnichannel.Retail.Curator.case.study.template.md)
 
 **Applied AI product architecture and governance case study**
 
