@@ -1,38 +1,68 @@
-[AI Omnichannel Retail Curator case study template.md](https://github.com/user-attachments/files/34399668/AI.Omnichannel.Retail.Curator.case.study.template.md)
+# Omnichannel AI Retail Curator
 
-**Applied AI product architecture and governance case study**
+**Personalization product architecture and interactive recommendation simulation**
 
-## The customer problem
+[Try the browser demonstration](https://msb24.github.io/ai-omnichannel-retail-curator/)
 
-Retail recommendations often lose context between discovery, product browsing, and later shopping sessions. The product concept explores how visual inputs and retrieval can support more relevant customer recommendations while preserving choice and transparency.
+> A Georgetown AI product-design case study and an accompanying, newly built browser demo using a fictional catalog and deterministic ranking rules. **The live page does not run computer vision or RAG inference.** Those appear in the proposed architecture and implementation backlog.
 
-## Proposed AI workflow
+## Product question
 
-1. Use computer vision to extract relevant attributes from a customer-provided product or inspiration image.
-2. Retrieve catalog information and supporting product evidence.
-3. Use retrieval-augmented generation to produce context-aware recommendations.
-4. Preserve optional customer preferences in a governed memory layer.
-5. Allow customers to correct or remove preferences and override AI suggestions.
+How could an AI retail experience combine customer preferences, product attributes, image interpretation, retrieval of relevant product knowledge, and customer-controlled memory while preserving explainability and correction rights?
 
-## Artifacts to publish after review
+## Try the interactive demo
 
-- System architecture diagram
-- User journey / screen mockups
-- Implementation backlog grouped by value and dependency
-- KPI definitions for recommendation relevance, trust, adoption, and override rates
-- Governance controls for consent, memory deletion, provenance, and evaluation
+1. Choose a shopping occasion such as Night out or Office style.
+2. Choose a style preference, budget, and category.
+3. Observe how a fictional set of products reorders based on transparent matching rules.
+4. Enable **Remember these preferences** only with consent. Reload the browser page to see the locally saved preference.
+5. Choose **Forget saved preferences**, then refresh to confirm the saved record is gone.
 
-## Evaluation questions
+## Scope of graduate work
 
-- Is the recommendation grounded in real catalog evidence?
-- What happens when the visual classifier is uncertain?
-- Can a customer understand or correct the source of a preference?
-- Does the system avoid persisting information beyond consent?
+- Designed the broader omnichannel customer journey with computer-vision-assisted discovery, RAG-based product explanation, customer memory, governance controls, and human correction.
+- Mapped system boundaries, architecture, implementation backlog, rollout considerations, and KPIs for recommendation relevance, adoption, and trust.
+- Considered how preference updates or deletion should propagate across a real product's memory and integration systems.
 
-## Project status
+## How this demo works
 
-Graduate product-design and system-architecture concept. Publish only materials you created or have permission to release. Do not label it as a production application unless a functioning end-to-end pipeline has been implemented and verified.
+`index.html` is a self-contained browser app using HTML, CSS, and JavaScript. It scores **fictional products** using declared preference and occasion matches. Optional memory is stored only in the user's own browser local storage, after consent. No accounts, payments, external APIs, product inventory feeds, or cloud databases are connected.
 
-**Designed by Maya Kalantari | M.S. Artificial Intelligence Management, Georgetown University**
-ng AI Omnichannel Retail Curator case study template.md…]()
-# ai-omnichannel-retail-curator
+## Planned production architecture (conceptual)
+
+1. Customer experience collects explicit shopping preferences and, where authorized, visual input.
+2. Computer vision component produces permitted image features.
+3. Product retrieval component looks up item attributes and source-backed explanations.
+4. A recommendation/ranking layer combines relevance, budget, availability, and user correction.
+5. Customer memory stores only authorized preferences and supports inspection, correction, and deletion.
+6. Monitoring and governance controls audit source quality, privacy compliance, and user-facing recommendation outcomes.
+
+These are **architectural requirements**, not deployed features of the demo.
+
+### Proposed system architecture
+
+```mermaid
+flowchart LR
+    A[Customer consent and preferences] --> B[Recommendation orchestrator]
+    I[Optional authorized image] --> C[Computer vision service - conceptual]
+    C --> B
+    P[Product knowledge source] --> R[Retrieval service - conceptual]
+    R --> B
+    M[Permissioned customer memory - conceptual] <--> B
+    B --> E[Explanation and customer correction]
+    E --> M
+    B --> G[Quality and governance monitoring]
+```
+
+**Architecture proposal only.** The browser page demonstrates local, deterministic matching and optional on-device preference storage. It does not run the conceptual services shown here.
+
+## Design decisions that matter
+
+- A transparent prototype is preferable to a fake claim that a recommender model is running.
+- A user should be able to see and correct what the system remembers about them.
+- Explanations should identify which data and preferences drove a recommendation.
+- A later production implementation would require consent handling across all downstream systems and testing for uneven recommendation outcomes.
+
+## Skills demonstrated
+
+AI product architecture, recommendation and RAG concepts, privacy-aware customer memory, human-centered correction, requirements, implementation backlog, KPI design, prototype interaction design. Browser demo developed with AI-assisted coding and manually reviewed scenario logic.
